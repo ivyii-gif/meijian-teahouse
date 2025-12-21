@@ -9,6 +9,16 @@
 </head>
 <body>
 
+    <div id="loading-screen">
+        <div class="loading-content">
+            <i class="fa-solid fa-glass-water loading-icon"></i>
+            <div class="loading-bar-container">
+                <div id="loading-fill"></div>
+            </div>
+            <div id="loading-text">0%</div>
+        </div>
+    </div>
+
     <aside class="site-aside">
         <nav>
             <ul>
@@ -151,15 +161,41 @@
         <footer class="site-footer">
             <div class="footer-left">&copy; 2025 梅間茶屋 版權所有</div>
             <div class="footer-right">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-line"></i></a>
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://line.me" target="_blank" aria-label="Line"><i class="fab fa-line"></i></a>
             </div>
         </footer>
     </div>
 
     <script>
-        // 選單展開/收合控制
+        // A. 加載動畫控制邏輯 (1.5秒版本)
+        window.addEventListener('load', function() {
+            let progress = 0;
+            const loadingText = document.getElementById('loading-text');
+            const loadingFill = document.getElementById('loading-fill');
+            const loadingScreen = document.getElementById('loading-screen');
+            
+            // 15ms * 100步 = 1500ms (1.5秒完成)
+            const interval = setInterval(() => {
+                progress += 1;
+                if (loadingText) loadingText.innerText = progress + "%";
+                if (loadingFill) loadingFill.style.width = progress + "%";
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    // 達到 100% 後稍微停留，然後淡出消失
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500); 
+                    }, 200); // 縮短結束停留時間
+                }
+            }, 15); 
+        });
+
+        // B. 側邊欄選單展開/收合控制
         document.querySelectorAll('.menu-toggle').forEach(button => {
             button.addEventListener('click', function() {
                 this.classList.toggle('active');
