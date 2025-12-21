@@ -1,5 +1,5 @@
 /* =========================================
-   梅間茶屋 完整樣式表 (咖啡色 Aside + 可愛粗圓體)
+   梅間茶屋 完整樣式表 (咖啡 Aside + 可愛圓體 + 1.5s加載)
    ========================================= */
 
 /* 引入 Google Fonts 思源黑體 (作為圓體失效時的加粗備援) */
@@ -10,12 +10,12 @@
 
 body {
     margin: 0;
-    /* 優先使用圓體，並透過思源黑體確保粗度與順眼感 */
+    /* 優先使用微軟正黑體並強制加粗，呈現可愛圓潤感 */
     font-family: "微軟正黑體", "Noto Sans TC", "Apple LiGothic Medium", sans-serif;
     display: flex;
     min-height: 100vh;
     background-color: #fff;
-    -webkit-font-smoothing: antialiased; /* 使字體渲染更順滑 */
+    -webkit-font-smoothing: antialiased;
 }
 
 /* --- 2. 全螢幕加載動畫 (Loading Screen) --- */
@@ -38,6 +38,7 @@ body {
     font-size: 5rem;
     color: #b24a2a; 
     margin-bottom: 25px;
+    /* 配合 1.5s 加載，讓跳動頻率變快更活潑 */
     animation: pulse 0.75s infinite ease-in-out;
 }
 
@@ -59,17 +60,18 @@ body {
     width: 0%; 
     height: 100%;
     background: #b24a2a;
+    /* 1.5s 快速推動感 */
     transition: width 0.15s linear;
 }
 
 #loading-text {
-    font-weight: 900; /* 特粗 */
+    font-weight: 900;
     color: #6b4a37;
     font-size: 1.4rem;
     letter-spacing: 2px;
 }
 
-/* --- 3. 左側側邊欄 (Aside) - 咖啡色 #80493B --- */
+/* --- 3. 左側側邊欄 (Aside) - 指定咖啡色 #80493B --- */
 .site-aside {
     width: 260px;
     background-color: #80493B;
@@ -87,8 +89,8 @@ body {
 .menu-label {
     padding: 20px 10px 10px 10px;
     font-size: 0.9rem;
-    color: #ffd7d7;
-    font-weight: 900; /* 加粗 */
+    color: #ffd7d7; /* 標籤使用淺粉色與咖啡底對比 */
+    font-weight: 900;
     letter-spacing: 3px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 10px;
@@ -106,17 +108,17 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1rem; /* 稍微放大 */
-    font-weight: 700; /* 加粗 */
+    font-size: 1.05rem;
+    font-weight: 700;
     text-align: left;
     transition: 0.3s;
-    border-radius: 8px; /* 增加可愛圓角 */
+    border-radius: 12px; /* 增加可愛圓角 */
 }
 
 .site-aside a:hover, .menu-toggle:hover {
     color: #ffffff;
-    background-color: #965a4c;
-    transform: translateX(5px); /* 懸浮時輕微右移增加動態感 */
+    background-color: #965a4c; /* 懸浮使用淺一號的咖啡色 */
+    transform: translateX(8px); /* 懸浮右移效果 */
 }
 
 .submenu {
@@ -126,7 +128,7 @@ body {
     padding-left: 15px;
     font-size: 0.95rem;
     font-weight: 500;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.15); /* 增加選單深度感 */
     border-radius: 8px;
 }
 
@@ -140,12 +142,12 @@ body {
 
 .menu-toggle.active i { transform: rotate(180deg); }
 
-/* --- 4. 右側內容包裝區 --- */
+/* --- 4. 右側內容包裝區 - 淺粉色背景 --- */
 .content-wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: #fff5f5;
+    background-color: #fff5f5; /* 淺粉色底層 */
 }
 
 .banner {
@@ -160,18 +162,18 @@ body {
 }
 
 .slogan { 
-    font-size: 2.2rem; 
+    font-size: 2.3rem; 
     margin: 0; 
-    font-weight: 900; /* 最粗 */
+    font-weight: 900;
     letter-spacing: 2px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
 }
 
 .banner-buttons { display: flex; gap: 15px; margin-top: 25px; }
 
 .btn {
-    padding: 12px 24px;
-    border-radius: 50px; /* 變成可愛膠囊形狀 */
+    padding: 12px 26px;
+    border-radius: 50px; /* 膠囊狀可愛按鈕 */
     text-decoration: none;
     font-weight: 900;
     border: 2px solid #fff;
@@ -182,63 +184,88 @@ body {
 .btn:hover {
     background: #fff;
     color: #80493B !important;
+    transform: scale(1.05);
 }
 
 .banner-controls { position: absolute; bottom: 15px; right: 20px; }
-.banner-audio { height: 35px; opacity: 0.8; }
+.banner-audio { height: 35px; opacity: 0.9; }
 
 /* 主要內容區域 */
-.site-main { padding: 40px; background-color: #fff5f5; }
+.site-main { 
+    padding: 40px; 
+    background-color: #fff5f5; 
+}
+
+.brand-article {
+    background: #ffffff; /* 信紙感白色區塊 */
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    margin-bottom: 40px;
+}
 
 .brand-article h2 {
     font-weight: 900;
     color: #80493B;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
+    margin-top: 0;
 }
 
-.brand-article { margin-bottom: 40px; line-height: 1.8; color: #444; font-weight: 500; }
+.brand-article p { 
+    line-height: 2; 
+    color: #444; 
+    font-weight: 500; 
+    font-size: 1.1rem;
+}
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 30px;
 }
 
 .card {
     background-color: #fff;
-    border: 2px solid #f5d0d0; /* 邊框加粗一點 */
-    padding: 20px;
+    border: 2px solid #fce4ec; /* 極淺粉邊框 */
+    padding: 25px;
     text-align: center;
-    border-radius: 20px; /* 增加可愛圓角 */
-    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-    transition: 0.3s;
+    border-radius: 25px; /* 超大可愛圓角 */
+    box-shadow: 0 8px 20px rgba(128, 73, 59, 0.05);
+    transition: 0.4s ease;
 }
 
-.card:hover { transform: translateY(-10px); }
+.card:hover { 
+    transform: translateY(-12px);
+    box-shadow: 0 15px 30px rgba(128, 73, 59, 0.1);
+}
 
 .prod-name {
     font-weight: 900;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #80493B;
-    margin: 10px 0;
+    margin: 15px 0 10px;
 }
 
 .card img {
     width: 100%;
-    height: 180px;
+    height: 190px;
     object-fit: contain;
-    background: #fcfcfc;
-    border-radius: 15px;
+    background: #fffafa;
+    border-radius: 18px;
     margin-bottom: 15px;
 }
 
-.price { color: #0077ad; font-weight: 900; font-size: 1.1rem; }
+.price { 
+    color: #b24a2a; /* 價格改用品牌紅色更順眼 */
+    font-weight: 900; 
+    font-size: 1.2rem; 
+}
 
-/* --- 5. Footer --- */
+/* --- 5. Footer - 咖啡色同步 --- */
 .site-footer {
     background: #80493B;
     border-top: none;
-    padding: 25px 40px;
+    padding: 30px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -249,20 +276,21 @@ body {
 .footer-right a {
     margin-left: 20px;
     color: #ffffff;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     transition: 0.3s;
 }
 
 .footer-right a:hover { 
     color: #ffd7d7; 
-    transform: scale(1.2);
+    transform: scale(1.25) rotate(5deg);
 }
 
-/* --- 6. 響應式 --- */
+/* --- 6. 響應式調整 --- */
 @media (max-width: 768px) {
     body { flex-direction: column; }
-    .site-aside { width: 100%; height: auto; position: static; }
+    .site-aside { width: 100%; height: auto; position: static; border-bottom: 2px solid rgba(255,255,255,0.1); }
     .banner { padding: 0 20px; text-align: center; justify-content: center; }
-    .slogan { font-size: 1.6rem; }
+    .slogan { font-size: 1.7rem; }
     .banner-buttons { justify-content: center; }
+    .site-main { padding: 20px; }
 }
