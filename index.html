@@ -17,6 +17,8 @@
                 <li><a href="origin.html"><i class="fa-solid fa-seedling"></i> 品牌起源</a></li>
                 <li><a href="news.html"><i class="fa-solid fa-bullhorn"></i> 最新消息</a></li>
                 
+                <li class="menu-label">MENU</li>
+
                 <li class="menu-group">
                     <button class="menu-toggle">梅子原味茶 <i class="fa-solid fa-chevron-down"></i></button>
                     <ul class="submenu">
@@ -103,7 +105,7 @@
             <article class="brand-article">
                 <h2>關於梅間茶屋</h2>
                 <p>追尋梅子的四季風味，將梅果清香融入茶飲、甜品與生活美學中。以「自然、清爽、手作」為核心精神，傳遞一杯杯溫柔且有層次的風味。</p>
-                <p>我們從嚴選的梅果開始，結合台灣優良茶葉，創造多款以梅為主題的飲品：從經典的梅子原味茶、蓬鬆的梅子奶蓋，到季節限定的梅子冰沙與創意特調，每一杯都蘊含手作溫度與對美味的堅持。</p>
+                <p>我們從嚴選的梅果開始，結合台灣優良茶葉，創造多款以梅為主題的飲品。</p>
             </article>
 
             <section class="product-area">
@@ -115,37 +117,60 @@
                     <article class="card">
                         <h4 class="prod-name">梅子紅茶</h4>
                         <img src="images/tea_red.jpg" alt="梅子紅茶">
-                        <p class="price">NT$ 70</p>
+                        <p class="price">NT$ 40</p>
                     </article>
-
                     <article class="card">
                         <h4 class="prod-name">梅子奶蓋烏龍</h4>
                         <img src="images/milkcap_oolong.png" alt="梅子奶蓋烏龍">
-                        <p class="price">NT$ 95</p>
+                        <p class="price">NT$ 65</p>
                     </article>
-
                     <article class="card">
                         <h4 class="prod-name">梅子檸檬冰爽</h4>
                         <img src="images/lemon_drink.png" alt="梅子檸檬冰爽">
-                        <p class="price">NT$ 85</p>
+                        <p class="price">NT$ 55</p>
                     </article>
-
                     <article class="card">
                         <h4 class="prod-name">梅子珍珠奶茶</h4>
                         <img src="images/pearl_milk_tea.png" alt="梅子珍珠奶茶">
-                        <p class="price">NT$ 110</p>
+                        <p class="price">NT$ 60</p>
                     </article>
-
                     <article class="card">
                         <h4 class="prod-name">紅棗梅子暖茶</h4>
                         <img src="images/warm_tea.png" alt="紅棗梅子暖茶">
-                        <p class="price">NT$ 80</p>
+                        <p class="price">NT$ 70</p>
                     </article>
-
                     <article class="card">
                         <h4 class="prod-name">老梅雪酪</h4>
                         <img src="images/sorbet.png" alt="老梅雪酪">
-                        <p class="price">NT$ 120</p>
+                        <p class="price">NT$ 70</p>
                     </article>
                 </div>
-            </section
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-left">&copy; 2025 梅間茶屋 版權所有</div>
+            <div class="footer-right">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-line"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 選單展開/收合控制
+        document.querySelectorAll('.menu-toggle').forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const submenu = this.nextElementSibling;
+                if (submenu.style.maxHeight) {
+                    submenu.style.maxHeight = null;
+                } else {
+                    submenu.style.maxHeight = submenu.scrollHeight + "px";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
