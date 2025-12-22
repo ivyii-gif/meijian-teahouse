@@ -1,10 +1,12 @@
-/* =========================================
-   梅間茶屋 完整樣式表 (移除圓點 + 手機優化版)
-   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&family=Noto+Serif+TC:wght@900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap');
+:root {
+    --primary-brown: #80493B;
+    --accent-red: #b24a2a;
+    --soft-pink: #fff5f5;
+    --white: #ffffff;
+}
 
-/* --- 1. 基礎設定 --- */
 * { box-sizing: border-box; }
 
 body {
@@ -12,248 +14,118 @@ body {
     font-family: "微軟正黑體", "Noto Sans TC", sans-serif;
     display: flex;
     min-height: 100vh;
-    background-color: #fff;
+    background-color: var(--white);
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- 2. 1.5秒全螢幕加載動畫 --- */
+/* 加載動畫 */
 #loading-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: #faf8f5; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 20000;
-    transition: opacity 0.5s ease, visibility 0.5s;
+    position: fixed; inset: 0; background: #faf8f5;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 10000; transition: opacity 0.5s;
 }
-
-.loading-icon {
-    font-size: 5rem;
-    color: #b24a2a; 
-    margin-bottom: 25px;
-    animation: pulse 0.75s infinite ease-in-out;
+.drink-loader-container {
+    position: relative; font-size: 80px; width: 100px; height: 100px; margin: 0 auto 15px;
 }
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.8; }
+.loading-icon-bg { color: #e6e2de; position: absolute; left: 10px; }
+.loading-icon-fill { 
+    color: var(--accent-red); position: absolute; left: 10px;
+    clip-path: inset(100% 0 0 0); 
 }
+#loading-text { font-weight: 900; color: var(--primary-brown); font-size: 1.5rem; text-align: center; }
 
-.loading-bar-container {
-    width: 240px; height: 8px;
-    background: #e6e2de;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 15px;
+/* 手機版導覽 */
+.mobile-nav-header {
+    display: none; position: fixed; top: 0; width: 100%; height: 60px;
+    background: var(--primary-brown); z-index: 1001; padding: 0 20px;
+    align-items: center; justify-content: space-between;
 }
+.mobile-logo { color: #fff; font-weight: 900; font-size: 1.2rem; }
+.burger-btn { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
 
-#loading-fill { width: 0%; height: 100%; background: #b24a2a; transition: width 0.15s linear; }
-#loading-text { font-weight: 900; color: #6b4a37; font-size: 1.4rem; letter-spacing: 2px; }
-
-/* --- 3. 手機版漢堡按鈕 --- */
-.mobile-menu-btn {
-    display: none;
-    position: fixed;
-    top: 15px; right: 15px;
-    z-index: 10001;
-    background: #80493B;
-    color: white;
-    border: none;
-    width: 50px; height: 50px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-/* --- 4. 左側咖啡色側邊欄 (Aside) --- */
+/* 側邊欄：已移除白色框框與點點，並加大圖示間距 */
 .site-aside {
-    width: 260px;
-    background-color: #80493B;
-    padding: 20px 10px;
-    position: sticky;
-    top: 0; height: 100vh;
-    overflow-y: auto;
-    z-index: 10000;
-    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 260px; background-color: var(--primary-brown);
+    padding: 20px 10px; position: sticky; top: 0; height: 100vh;
+    overflow-y: auto; transition: 0.3s ease-in-out;
 }
+.site-aside ul { list-style: none; padding: 0; margin: 0; }
 
-/* 移除清單預設圓點樣式 */
-.site-aside ul { 
-    list-style: none !important; 
-    padding: 0 !important; 
-    margin: 0 !important; 
-}
-
-.site-aside li { 
-    margin-bottom: 5px; 
-    list-style: none !important; /* 二次確保移除圓點 */
-}
-
-/* MENU 標籤 */
 .menu-label {
-    display: block;
-    padding: 20px 10px 10px 10px;
-    font-size: 0.9rem;
-    color: #ffd7d7;
-    font-weight: 900;
-    letter-spacing: 3px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 10px;
-    text-align: center;
+    padding: 20px 10px 10px; font-size: 0.9rem; color: #ffd7d7;
+    font-weight: 900; letter-spacing: 3px; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px; text-align: center;
 }
 
 .site-aside a, .menu-toggle {
-    text-decoration: none;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 14px 12px;
-    background: none; border: none;
-    cursor: pointer;
-    font-size: 1.05rem;
-    font-weight: 700;
-    transition: 0.3s;
-    border-radius: 12px;
+    text-decoration: none; color: #fff; display: flex; align-items: center;
+    padding: 14px 12px; font-weight: 700; border-radius: 0; transition: 0.3s;
+    background: transparent; border: none; width: 100%; cursor: pointer; text-align: left;
 }
 
-.site-aside a:hover, .menu-toggle:hover {
-    background-color: #965a4c;
-    transform: translateX(8px);
+/* 增加圖示與文字之間的距離 */
+.site-aside i {
+    margin-right: 15px; /* 圖示離文字遠一點 */
+    width: 20px; text-align: center;
+}
+
+.site-aside a:hover, .menu-toggle:hover { 
+    background: rgba(255, 255, 255, 0.1); transform: translateX(8px); 
 }
 
 .submenu {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    padding: 0 !important; /* 確保子選單也沒有內縮圓點 */
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+    background: rgba(0, 0, 0, 0.15); padding: 0; margin: 0;
 }
+.submenu li a { padding-left: 45px; font-size: 0.95rem; }
 
-.submenu li { list-style: none !important; }
-.submenu li a { color: #eee; font-size: 0.95rem; }
-
-.menu-toggle i { transition: transform 0.3s; font-size: 0.8rem; color: #ffffff; }
-.menu-toggle.active i { transform: rotate(180deg); }
-
-/* --- 5. 右側內容區 --- */
-.content-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: #fff5f5;
-}
-
+/* 內容區 */
+.content-wrapper { flex: 1; display: flex; flex-direction: column; background: var(--soft-pink); }
 .banner {
-    height: 25vh; min-height: 220px;
+    height: 40vh; min-height: 300px;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("images/bannerbg.jpg") center/cover;
     display: flex; align-items: center; padding: 0 40px; color: #fff; position: relative;
 }
+.slogan { font-size: 2.5rem; font-weight: 900; font-family: 'Noto Serif TC', serif; margin-bottom: 20px; }
 
-.slogan { font-size: 2.3rem; font-weight: 900; letter-spacing: 2px; text-shadow: 2px 2px 6px rgba(0,0,0,0.4); }
-
+/* Banner 按鈕造型 */
+.banner-buttons { display: flex; gap: 15px; }
 .btn {
-    padding: 12px 26px; border-radius: 50px;
-    text-decoration: none; font-weight: 900;
-    border: 2px solid #fff; color: #fff !important;
-    transition: 0.3s; display: inline-block;
+    padding: 8px 20px; border-radius: 50px; text-decoration: none;
+    font-weight: 700; font-size: 0.9rem; border: 2px solid var(--white);
+    color: var(--white) !important; transition: 0.3s;
 }
+.btn:hover { background: var(--white); color: var(--primary-brown) !important; }
 
-.btn:hover { background: #fff; color: #80493B !important; transform: scale(1.05); }
+/* 音樂播放器位置 */
+.banner-controls { position: absolute; bottom: 20px; right: 40px; z-index: 3; }
+.banner-audio { height: 35px; opacity: 0.8; }
 
-/* 主要內容區域 (信紙感白色區塊) */
 .site-main { padding: 40px; }
-
-.brand-article {
-    background: #ffffff;
-    padding: 40px; border-radius: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.02);
-    margin-bottom: 40px;
-}
-
-.brand-article h2 { font-weight: 900; color: #80493B; font-size: 1.9rem; margin-top: 0; }
-.brand-article p { line-height: 2; color: #444; font-weight: 500; font-size: 1.1rem; }
+.brand-article { background: #fff; padding: 40px; border-radius: 25px; margin-bottom: 40px; }
+.section-title { font-family: 'Noto Serif TC', serif; font-weight: 900; color: var(--primary-brown); }
 
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 30px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;
 }
+.card { background: #fff; padding: 25px; text-align: center; border-radius: 25px; box-shadow: 0 8px 20px rgba(128, 73, 59, 0.05); }
+.card img { width: 100%; height: 220px; object-fit: cover; border-radius: 15px; }
+.price { color: var(--accent-red); font-weight: 900; font-size: 1.3rem; margin-top: 10px; }
 
-.card {
-    background-color: #fff; border: 2px solid #fce4ec;
-    padding: 25px; text-align: center; border-radius: 25px;
-    box-shadow: 0 8px 20px rgba(128, 73, 59, 0.05);
-    transition: 0.4s ease;
-}
-
-.card:hover { transform: translateY(-12px); box-shadow: 0 15px 30px rgba(128, 73, 59, 0.1); }
-
-.prod-name { font-weight: 900; font-size: 1.2rem; color: #80493B; margin: 15px 0 10px; }
-
-.card img {
-    width: 100%; height: 190px;
-    object-fit: contain; background: #fffafa;
-    border-radius: 18px; margin-bottom: 15px;
-}
-
-.price { color: #b24a2a; font-weight: 900; font-size: 1.2rem; }
-
-/* --- 6. 頁尾 Footer --- */
 .site-footer {
-    background: #80493B;
-    padding: 30px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #ffffff;
-    font-weight: 700;
+    background: var(--primary-brown); padding: 30px 40px;
+    display: flex; justify-content: space-between; align-items: center; color: #fff;
+    border-radius: 200px 0 0 0;
 }
+.footer-right a { color: #fff; font-size: 1.5rem; margin-left: 20px; text-decoration: none; }
 
-.footer-right { display: flex; gap: 20px; }
-
-.footer-right a {
-    color: #ffffff !important;
-    font-size: 1.7rem;
-    transition: 0.3s;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.footer-right a:hover { color: #ffd7d7 !important; transform: scale(1.25) rotate(5deg); }
-
-/* --- 7. 響應式調整 --- */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     body { flex-direction: column; }
-    .mobile-menu-btn { display: block; }
-
+    .mobile-nav-header { display: flex; }
     .site-aside {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 80%;
-        max-width: 280px;
-        height: 100vh;
-        z-index: 10000;
-        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: fixed; left: -260px; top: 60px;
+        z-index: 1000; height: calc(100vh - 60px);
     }
-
     .site-aside.active { left: 0; }
-
-    /* 確保手機版選單內容也沒有圓點 */
-    .site-aside ul { list-style: none !important; }
-
-    .content-wrapper { width: 100%; }
-    .banner { padding: 0 20px; text-align: center; justify-content: center; }
-    .slogan { font-size: 1.6rem; }
-    .banner-buttons { justify-content: center; }
-    .site-main { padding: 20px; }
-    .brand-article { padding: 30px 20px; border-radius: 15px; }
-    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    .site-footer { flex-direction: column; gap: 20px; text-align: center; padding: 30px 20px; }
+    .content-wrapper { padding-top: 60px; }
 }

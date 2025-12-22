@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>線上點餐 | 梅間茶屋</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        /* 點餐頁面專用樣式 */
+        .order-container { background: #fff; padding: 25px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .menu-category { margin-bottom: 25px; }
+        .category-title { border-left: 5px solid #80493B; padding-left: 10px; margin-bottom: 15px; color: #80493B; font-weight: 900; }
+        
+        .item-card { border-bottom: 1px solid #eee; padding: 15px 0; }
+        .item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .item-name { font-weight: 700; color: #444; font-size: 1.1rem; }
+        .item-price { color: #b24a2a; font-weight: 900; }
+
+        .options-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+            gap: 10px; 
+            margin-bottom: 10px; 
+        }
+        .opt-select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.85rem; height: auto; }
+
+        .add-btn { background: #80493B; color: #fff; border: none; padding: 8px 25px; border-radius: 50px; cursor: pointer; float: right; transition: 0.3s; font-weight: bold; }
+        .add-btn:hover { background: #b24a2a; }
+
+        /* 購物車詳細清單樣式 */
+        .cart-details { margin: 20px 0; padding: 15px; background: #fafafa; border-radius: 10px; border: 1px solid #eee; }
+        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #ddd; font-size: 0.9rem; }
+        .cart-item-row:last-child { border-bottom: none; }
+        .cart-item-info { color: #666; font-size: 0.8rem; }
+        .remove-item-btn { color: #ccc; cursor: pointer; margin-left: 10px; transition: 0.3s; }
+        .remove-item-btn:hover { color: #b24a2a; }
+
+        .cart-fixed-bottom { background: #80493B; color: #fff; padding: 15px 25px; border-radius: 15px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .submit-all-btn { background: #b24a2a; color: white; border: none; padding: 10px 25px; border-radius: 50px; font-weight: 900; cursor: pointer; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #80493B; }
+    </style>
+</head>
+<body>
+
+    <header class="mobile-nav-header">
+        <div class="mobile-logo">梅間茶屋</div>
+        <button id="burger-toggle" class="burger-btn"><i class="fa-solid fa-bars"></i></button>
+    </header>
+
+    <aside class="site-aside" id="site-aside">
+        <nav>
+            <ul class="main-menu">
+                <li class="menu-label">ORDERING</li>
+                <li><a href="index.html"><i class="fa-solid fa-arrow-left"></i>返回首頁</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="content-wrapper">
+        <main class="site-main">
+            <h2 class="section-title">線上點餐</h2>
+            
+            <div class="order-container">
+                <div id="menu-items-list">
+                    </div>
+
+                <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+                
+                <h3 class="section-title"><i class="fa-solid fa-cart-shopping"></i> 已選購清單</h3>
+                <div class="cart-details" id="cart-list-display">
+                    <p style="color: #999; text-align: center;">尚未選購飲品</p>
+                </div>
+
+                <h3 class="section-title">結帳資訊</h3>
+                <div class="form-group">
+                    <label>取貨門市</label>
+                    <select id="store-id" class="opt-select" style="padding:10px;">
+                        <option>台北信義總店</option>
+                        <option>台中勤美分店</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>付款方式</label>
+                    <select id="pay-id" class="opt-select" style="padding:10px;">
+                        <option>到店付款</option>
+                        <option>Line Pay</option>
+                        <option>線上刷卡</option>
+                    </select>
+                </div>
+
+                <div class="cart-fixed-bottom">
+                    <div>已選數量：<span id="cart-count">0</span> | 總額：NT$ <span id="cart-total">0</span></div>
+                    <button class="submit-all-btn" onclick="sendOrder()">送出訂單</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const menuData = [
+            { cat: "梅子原味茶", items: ["梅子紅茶", "梅子綠茶", "梅子烏龍", "梅子青茶"], price: 40 },
+            { cat: "梅子奶蓋", items: ["梅子奶蓋紅茶", "梅子奶蓋烏龍", "梅子奶蓋青茶"], price: 65 },
+            { cat: "梅子特調", items: ["梅子檸檬冰爽", "青梅氣泡飲", "梅蜜水果茶", "梅子凍飲茶"], price: 55 },
+            { cat: "奶茶／厚奶", items: ["厚奶青茶", "黑糖厚奶", "梅子珍珠奶茶"], price: 60 },
+            { cat: "無咖啡因・健康清飲", items: ["紅棗梅子暖茶", "梅子決明子茶", "檸檬梅花草茶"], price: 70 },
+            { cat: "冰沙", items: ["梅子冰沙", "老梅雪酪", "梅蜜寒天凍飲"], price: 70 }
+        ];
+
+        let cart = [];
+
+        function initMenu() {
+            const list = document.getElementById('menu-items-list');
+            menuData.forEach(group => {
+                let html = `<div class="menu-category"><h3 class="category-title">${group.cat}</h3>`;
+                group.items.forEach(itemName => {
+                    html += `
+                    <div class="item-card">
+                        <div class="item-header">
+                            <span class="item-name">${itemName}</span>
+                            <span class="item-price">NT$ ${group.price}</span>
+                        </div>
+                        <div class="options-grid">
+                            <select class="opt-select temp-sel">
+                                <option value="冷">冷</option><option value="熱">熱</option>
+                            </select>
+                            <select class="opt-select ice-sel">
+                                <option value="正常冰">正常冰</option><option value="少冰">少冰</option><option value="微冰">微冰</option><option value="去冰">去冰</option>
+                            </select>
+                            <select class="opt-select sugar-sel">
+                                <option value="10分糖">10分糖</option><option value="7分糖">7分糖</option><option value="5分糖">5分糖</option><option value="3分糖">3分糖</option><option value="1分糖">1分糖</option>
+                            </select>
+                            <select class="opt-select topping-sel">
+                                <option value="0">不加料</option>
+                                <option value="10">珍珠 (+10元)</option>
+                                <option value="15">梅子凍 (+15元)</option>
+                                <option value="15">梅子粉粿 (+15元)</option>
+                            </select>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('${itemName}', ${group.price}, this)">加入</button>
+                        <div style="clear:both;"></div>
+                    </div>`;
+                });
+                html += group.cat === "冰沙" ? "" : "</div>"; 
+                list.innerHTML += html;
+            });
+        }
+
+        function addToCart(name, basePrice, btn) {
+            const card = btn.parentElement;
+            const temp = card.querySelector('.temp-sel').value;
+            const ice = card.querySelector('.ice-sel').value;
+            const sugar = card.querySelector('.sugar-sel').value;
+            const toppingSelect = card.querySelector('.topping-sel');
+            const toppingPrice = parseInt(toppingSelect.value);
+            const toppingName = toppingSelect.options[toppingSelect.selectedIndex].text;
+            const finalPrice = basePrice + toppingPrice;
+
+            cart.push({ name, price: finalPrice, temp, ice, sugar, topping: toppingPrice > 0 ? toppingName : "無加料" });
+            updateUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateUI();
+        }
+
+        function updateUI() {
+            const cartList = document.getElementById('cart-list-display');
+            const countSpan = document.getElementById('cart-count');
+            const totalSpan = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                cartList.innerHTML = '<p style="color: #999; text-align: center;">尚未選購飲品</p>';
+            } else {
+                cartList.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item-row">
+                        <div>
+                            <strong>${item.name}</strong> <span class="cart-item-info">(${item.temp}/${item.ice}/${item.sugar}/${item.topping})</span>
+                        </div>
+                        <div>
+                            <span>NT$ ${item.price}</span>
+                            <i class="fa-solid fa-trash-can remove-item-btn" onclick="removeFromCart(${index})"></i>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            countSpan.innerText = cart.length;
+            totalSpan.innerText = cart.reduce((sum, item) => sum + item.price, 0);
+        }
+
+        function sendOrder() {
+            if(cart.length === 0) return alert("購物車目前是空的！");
+            alert(`訂單已成功送出！共 ${cart.length} 杯，總金額 NT$ ${document.getElementById('cart-total').innerText}`);
+            cart = [];
+            updateUI();
+        }
+
+        initMenu();
+        document.getElementById('burger-toggle').onclick = () => document.getElementById('site-aside').classList.toggle('active');
+    </script>
+</body>
+</html>

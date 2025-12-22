@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>加盟資訊 | 梅間茶屋</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <header class="mobile-nav-header">
+        <div class="mobile-logo">梅間茶屋</div>
+        <button id="burger-toggle" class="burger-btn"><i class="fa-solid fa-bars"></i></button>
+    </header>
+
+    <aside class="site-aside" id="site-aside">
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> 首頁</a></li>
+                <li><a href="about.html"><i class="fa-solid fa-book"></i> 品牌故事</a></li>
+                <li><a href="origin.html"><i class="fa-solid fa-seedling"></i> 品牌起源</a></li>
+                <li><a href="news.html"><i class="fa-solid fa-bullhorn"></i> 最新消息</a></li>
+                <li class="menu-label">PARTNERSHIP</li>
+                <li><a href="join.html"><i class="fa-solid fa-handshake"></i> 加盟資訊</a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-phone"></i> 聯絡我們</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="content-wrapper">
+        <header class="site-header">
+            <div class="banner">
+                <div class="banner-inner">
+                    <h1 class="slogan">與梅間，共創美好事業</h1>
+                </div>
+            </div>
+        </header>
+
+        <main class="site-main">
+            <article class="brand-article">
+                <h2 class="section-title">為什麼選擇梅間茶屋？</h2>
+                <p>我們擁有穩定的南投高山梅果供應鏈，結合專業研發團隊，在競爭激烈的手搖飲市場中，以獨特「梅子主題」做出品牌差異化。</p>
+                
+                <div class="product-grid" style="margin-top: 30px;">
+                    <div class="card" style="padding: 20px;">
+                        <i class="fa-solid fa-leaf" style="font-size: 2rem; color: #80493B;"></i>
+                        <h4>獨家原料</h4>
+                        <p style="font-size: 0.9rem;">嚴選自然農法梅果，市場唯一風味。</p>
+                    </div>
+                    <div class="card" style="padding: 20px;">
+                        <i class="fa-solid fa-graduation-cap" style="font-size: 2rem; color: #80493B;"></i>
+                        <h4>專業培訓</h4>
+                        <p style="font-size: 0.9rem;">完善的教育訓練，無經驗也可上手。</p>
+                    </div>
+                    <div class="card" style="padding: 20px;">
+                        <i class="fa-solid fa-chart-line" style="font-size: 2rem; color: #80493B;"></i>
+                        <h4>行銷支援</h4>
+                        <p style="font-size: 0.9rem;">總部統一規劃活動，維持品牌熱度。</p>
+                    </div>
+                </div>
+            </article>
+
+            <section class="brand-article">
+                <h2 class="section-title">加盟流程</h2>
+                <div style="line-height: 2.5; color: #666;">
+                    <p><i class="fa-solid fa-circle-check" style="color: #b24a2a;"></i> <strong>STEP 01.</strong> 線上諮詢或來電預約</p>
+                    <p><i class="fa-solid fa-circle-check" style="color: #b24a2a;"></i> <strong>STEP 02.</strong> 品牌說明與實地品評</p>
+                    <p><i class="fa-solid fa-circle-check" style="color: #b24a2a;"></i> <strong>STEP 03.</strong> 商圈評估與店面審核</p>
+                    <p><i class="fa-solid fa-circle-check" style="color: #b24a2a;"></i> <strong>STEP 04.</strong> 正式簽約與技術訓練</p>
+                    <p><i class="fa-solid fa-circle-check" style="color: #b24a2a;"></i> <strong>STEP 05.</strong> 店面裝修與隆重開幕</p>
+                </div>
+            </section>
+
+            <section class="brand-article">
+                <h2 class="section-title">預約加盟諮詢</h2>
+                <form style="display: flex; flex-direction: column; gap: 15px; max-width: 500px;">
+                    <input type="text" placeholder="您的姓名" style="padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                    <input type="tel" placeholder="聯絡電話" style="padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                    <input type="text" placeholder="預定加盟地區" style="padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                    <textarea placeholder="您的其他問題..." rows="4" style="padding: 12px; border: 1px solid #ddd; border-radius: 8px;"></textarea>
+                    <button type="button" class="btn primary" style="background: #b24a2a; color: white; border: none; cursor: pointer; border-radius: 50px;" onclick="alert('申請已送出，專員將盡快與您聯繫！')">送出諮詢申請</button>
+                </form>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-left">&copy; 2025 梅間茶屋 版權所有</div>
+            <div class="footer-right">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-line"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 手機版選單
+        document.getElementById('burger-toggle').onclick = () => {
+            document.getElementById('site-aside').classList.toggle('active');
+        };
+    </script>
+</body>
+</html>

@@ -5,36 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>梅間茶屋 | 一顆梅子，一杯好茶</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style2.css">
 </head>
 <body>
 
     <div id="loading-screen">
         <div class="loading-content">
-            <i class="fa-solid fa-glass-water loading-icon"></i>
-            <div class="loading-bar-container">
-                <div id="loading-fill"></div>
+            <div class="drink-loader-container">
+                <i class="fa-solid fa-glass-water loading-icon-bg"></i>
+                <i class="fa-solid fa-glass-water loading-icon-fill" id="loading-fill-icon"></i>
             </div>
             <div id="loading-text">0%</div>
         </div>
     </div>
 
-    <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <i class="fa-solid fa-bars"></i>
-    </button>
+    <header class="mobile-nav-header">
+        <div class="mobile-logo">梅間茶屋</div>
+        <button id="burger-toggle" class="burger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
 
-    <aside class="site-aside">
+    <aside class="site-aside" id="site-aside">
         <nav>
-            <ul>
-                <li><a href="index.html"><i class="fa-solid fa-house"></i> 首頁</a></li>
-                <li><a href="about.html"><i class="fa-solid fa-book"></i> 品牌故事</a></li>
-                <li><a href="origin.html"><i class="fa-solid fa-seedling"></i> 品牌起源</a></li>
-                <li><a href="news.html"><i class="fa-solid fa-bullhorn"></i> 最新消息</a></li>
+            <ul class="main-menu">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i>首頁</a></li>
+                <li><a href="about.html"><i class="fa-solid fa-book"></i>品牌故事</a></li>
+                <li><a href="origin.html"><i class="fa-solid fa-seedling"></i>品牌起源</a></li>
+                <li><a href="news.html"><i class="fa-solid fa-bullhorn"></i>最新消息</a></li>
                 
                 <li class="menu-label">MENU</li>
 
                 <li class="menu-group">
-                    <button class="menu-toggle">梅子原味茶 <i class="fa-solid fa-chevron-down"></i></button>
+                    <button class="menu-toggle">梅子原味茶<i class="fa-solid fa-chevron-down"></i></button>
                     <ul class="submenu">
                         <li><a href="product_redtea.html">梅子紅茶</a></li>
                         <li><a href="product_greentea.html">梅子綠茶</a></li>
@@ -44,7 +48,7 @@
                 </li>
 
                 <li class="menu-group">
-                    <button class="menu-toggle">梅子奶蓋 <i class="fa-solid fa-chevron-down"></i></button>
+                    <button class="menu-toggle">梅子奶蓋<i class="fa-solid fa-chevron-down"></i></button>
                     <ul class="submenu">
                         <li><a href="milkcap_redtea.html">梅子奶蓋紅茶</a></li>
                         <li><a href="milkcap_oolong.html">梅子奶蓋烏龍</a></li>
@@ -53,7 +57,7 @@
                 </li>
 
                 <li class="menu-group">
-                    <button class="menu-toggle">梅子特調 <i class="fa-solid fa-chevron-down"></i></button>
+                    <button class="menu-toggle">梅子特調<i class="fa-solid fa-chevron-down"></i></button>
                     <ul class="submenu">
                         <li><a href="special_lemon.html">梅子檸檬冰爽</a></li>
                         <li><a href="special_bubble.html">青梅氣泡飲</a></li>
@@ -63,7 +67,7 @@
                 </li>
 
                 <li class="menu-group">
-                    <button class="menu-toggle">奶茶／厚奶 <i class="fa-solid fa-chevron-down"></i></button>
+                    <button class="menu-toggle">奶茶／厚奶<i class="fa-solid fa-chevron-down"></i></button>
                     <ul class="submenu">
                         <li><a href="thick_milk_qingcha.html">厚奶青茶</a></li>
                         <li><a href="thick_milk_brown.html">黑糖厚奶</a></li>
@@ -72,7 +76,7 @@
                 </li>
 
                 <li class="menu-group">
-                    <button class="menu-toggle">無咖啡因・健康清飲 <i class="fa-solid fa-chevron-down"></i></button>
+                    <button class="menu-toggle">無咖啡因・健康清飲<i class="fa-solid fa-chevron-down"></i></button>
                     <ul class="submenu">
                         <li><a href="health_warm.html">紅棗梅子暖茶</a></li>
                         <li><a href="health_cassia.html">梅子決明子茶</a></li>
@@ -81,7 +85,7 @@
                 </li>
 
                 <li class="menu-group">
-                    <button class="menu-toggle">冰沙 <i class="fa-solid fa-chevron-down"></i></button>
+                    <button class="menu-toggle">冰沙<i class="fa-solid fa-chevron-down"></i></button>
                     <ul class="submenu">
                         <li><a href="slush_plum.html">梅子冰沙</a></li>
                         <li><a href="slush_sorbet.html">老梅雪酪</a></li>
@@ -89,9 +93,9 @@
                     </ul>
                 </li>
 
-                <li><a href="merch.html"><i class="fa-solid fa-gift"></i> 周邊商品</a></li>
-                <li><a href="stores.html"><i class="fa-solid fa-map-marker-alt"></i> 門市據點</a></li>
-                <li><a href="contact.html"><i class="fa-solid fa-phone"></i> 聯絡我們</a></li>
+                <li><a href="merch.html"><i class="fa-solid fa-gift"></i>周邊商品</a></li>
+                <li><a href="stores.html"><i class="fa-solid fa-map-marker-alt"></i>門市據點</a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-phone"></i>聯絡我們</a></li>
             </ul>
         </nav>
     </aside>
@@ -102,14 +106,13 @@
                 <div class="banner-inner">
                     <h1 class="slogan">一顆梅子，一杯好茶</h1>
                     <div class="banner-buttons">
-                        <a class="btn primary" href="product_list.html">立即選購</a>
-                        <a class="btn ghost" href="about.html">了解我們</a>
+                        <a class="btn primary" href="product_list.html">立即點餐</a>
+                        <a class="btn ghost" href="join.html">加入我們</a>
                     </div>
                 </div>
                 <div class="banner-controls">
-                    <audio controls class="banner-audio">
+                    <audio id="bg-music" controls class="banner-audio">
                         <source src="media/webmusic.mp3" type="audio/mpeg">
-                        您的瀏覽器不支援音樂播放。
                     </audio>
                 </div>
             </div>
@@ -117,16 +120,15 @@
 
         <main class="site-main">
             <article class="brand-article">
-                <h2>關於梅間茶屋</h2>
+                <h2 class="section-title">關於梅間茶屋</h2>
                 <p>追尋梅子的四季風味，將梅果清香融入茶飲、甜品與生活美學中。以「自然、清爽、手作」為核心精神，傳遞一杯杯溫柔且有層次的風味。</p>
                 <p>我們從嚴選的梅果開始，結合台灣優良茶葉，創造多款以梅為主題的飲品。</p>
             </article>
 
             <section class="product-area">
                 <header class="section-head">
-                    <h3 style="color:#80493B; font-weight:900;">本店推薦</h3>
+                    <h3 class="section-title">本店推薦</h3>
                 </header>
-
                 <div class="product-grid">
                     <article class="card">
                         <h4 class="prod-name">梅子紅茶</h4>
@@ -165,63 +167,61 @@
         <footer class="site-footer">
             <div class="footer-left">&copy; 2025 梅間茶屋 版權所有</div>
             <div class="footer-right">
-                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://line.me" target="_blank" aria-label="Line"><i class="fab fa-line"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://line.me" target="_blank"><i class="fab fa-line"></i></a>
             </div>
         </footer>
     </div>
 
     <script>
-        // A. 加載動畫控制 (1.5秒版本)
         window.addEventListener('load', function() {
             let progress = 0;
             const loadingText = document.getElementById('loading-text');
-            const loadingFill = document.getElementById('loading-fill');
+            const loadingFillIcon = document.getElementById('loading-fill-icon');
             const loadingScreen = document.getElementById('loading-screen');
-            
             const interval = setInterval(() => {
                 progress += 1;
                 if (loadingText) loadingText.innerText = progress + "%";
-                if (loadingFill) loadingFill.style.width = progress + "%";
-                
+                if (loadingFillIcon) loadingFillIcon.style.clipPath = `inset(${100 - progress}% 0 0 0)`;
                 if (progress >= 100) {
                     clearInterval(interval);
                     setTimeout(() => {
                         loadingScreen.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                        }, 500); 
+                        setTimeout(() => { loadingScreen.style.display = 'none'; }, 500);
                     }, 200);
                 }
-            }, 15); 
+            }, 12); 
         });
 
-        // B. 手機版漢堡選單控制
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const aside = document.querySelector('.site-aside');
-
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', () => {
-                aside.classList.toggle('active');
-                // 切換三條線與叉叉圖示
-                const icon = mobileBtn.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-xmark');
-            });
+        const bgMusic = document.getElementById('bg-music');
+        function initMusic() {
+            bgMusic.play().then(() => {
+                setTimeout(() => {
+                    let fadeEffect = setInterval(() => {
+                        if (bgMusic.volume > 0.1) { bgMusic.volume -= 0.1; } 
+                        else { bgMusic.pause(); bgMusic.volume = 1; clearInterval(fadeEffect); }
+                    }, 200);
+                }, 15000);
+            }).catch(() => {});
+            document.removeEventListener('click', initMusic);
         }
+        document.addEventListener('click', initMusic);
 
-        // C. 側邊欄子選單摺疊控制
+        const burgerBtn = document.getElementById('burger-toggle');
+        const siteAside = document.getElementById('site-aside');
+        burgerBtn.addEventListener('click', () => {
+            siteAside.classList.toggle('active');
+            const icon = burgerBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+
         document.querySelectorAll('.menu-toggle').forEach(button => {
             button.addEventListener('click', function() {
                 this.classList.toggle('active');
                 const submenu = this.nextElementSibling;
-                if (submenu.style.maxHeight) {
-                    submenu.style.maxHeight = null;
-                } else {
-                    // 使用 scrollHeight 確保動態高度計算
-                    submenu.style.maxHeight = submenu.scrollHeight + "px";
-                }
+                submenu.style.maxHeight = submenu.style.maxHeight ? null : submenu.scrollHeight + "px";
             });
         });
     </script>
