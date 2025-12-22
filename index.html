@@ -19,6 +19,10 @@
         </div>
     </div>
 
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
     <aside class="site-aside">
         <nav>
             <ul>
@@ -120,7 +124,7 @@
 
             <section class="product-area">
                 <header class="section-head">
-                    <h3>本店推薦</h3>
+                    <h3 style="color:#80493B; font-weight:900;">本店推薦</h3>
                 </header>
 
                 <div class="product-grid">
@@ -169,14 +173,13 @@
     </div>
 
     <script>
-        // A. 加載動畫控制邏輯 (1.5秒版本)
+        // A. 加載動畫控制 (1.5秒版本)
         window.addEventListener('load', function() {
             let progress = 0;
             const loadingText = document.getElementById('loading-text');
             const loadingFill = document.getElementById('loading-fill');
             const loadingScreen = document.getElementById('loading-screen');
             
-            // 15ms * 100步 = 1500ms (1.5秒完成)
             const interval = setInterval(() => {
                 progress += 1;
                 if (loadingText) loadingText.innerText = progress + "%";
@@ -184,18 +187,31 @@
                 
                 if (progress >= 100) {
                     clearInterval(interval);
-                    // 達到 100% 後稍微停留，然後淡出消失
                     setTimeout(() => {
                         loadingScreen.style.opacity = '0';
                         setTimeout(() => {
                             loadingScreen.style.display = 'none';
                         }, 500); 
-                    }, 200); // 縮短結束停留時間
+                    }, 200);
                 }
             }, 15); 
         });
 
-        // B. 側邊欄選單展開/收合控制
+        // B. 手機版漢堡選單控制
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const aside = document.querySelector('.site-aside');
+
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                aside.classList.toggle('active');
+                // 切換三條線與叉叉圖示
+                const icon = mobileBtn.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-xmark');
+            });
+        }
+
+        // C. 側邊欄子選單摺疊控制
         document.querySelectorAll('.menu-toggle').forEach(button => {
             button.addEventListener('click', function() {
                 this.classList.toggle('active');
@@ -203,6 +219,7 @@
                 if (submenu.style.maxHeight) {
                     submenu.style.maxHeight = null;
                 } else {
+                    // 使用 scrollHeight 確保動態高度計算
                     submenu.style.maxHeight = submenu.scrollHeight + "px";
                 }
             });
