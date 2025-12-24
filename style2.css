@@ -43,7 +43,7 @@ body {
 .mobile-logo { color: #fff; font-weight: 900; font-size: 1.2rem; }
 .burger-btn { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
 
-/* 側邊欄：已移除白色框框與點點，並加大圖示間距 */
+/* 側邊欄 */
 .site-aside {
     width: 260px; background-color: var(--primary-brown);
     padding: 20px 10px; position: sticky; top: 0; height: 100vh;
@@ -63,9 +63,8 @@ body {
     background: transparent; border: none; width: 100%; cursor: pointer; text-align: left;
 }
 
-/* 增加圖示與文字之間的距離 */
 .site-aside i {
-    margin-right: 15px; /* 圖示離文字遠一點 */
+    margin-right: 15px; 
     width: 20px; text-align: center;
 }
 
@@ -105,13 +104,39 @@ body {
 .brand-article { background: #fff; padding: 40px; border-radius: 25px; margin-bottom: 40px; }
 .section-title { font-family: 'Noto Serif TC', serif; font-weight: 900; color: var(--primary-brown); }
 
+/* 商品推薦區域 - 修改重點：圖片局部展示與切到效果 */
 .product-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;
 }
-.card { background: #fff; padding: 25px; text-align: center; border-radius: 25px; box-shadow: 0 8px 20px rgba(128, 73, 59, 0.05); }
-.card img { width: 100%; height: 220px; object-fit: cover; border-radius: 15px; }
-.price { color: var(--accent-red); font-weight: 900; font-size: 1.3rem; margin-top: 10px; }
+.card { 
+    background: #fff; 
+    padding: 25px; 
+    text-align: center; 
+    border-radius: 25px; 
+    box-shadow: 0 8px 20px rgba(128, 73, 59, 0.05); 
+    overflow: hidden; /* 確保放大的圖片不會超出卡片範圍 */
+}
+.card img { 
+    width: 130%; /* 放大寬度，讓部分畫面在框外 */
+    height: 220px; 
+    object-fit: cover; 
+    border-radius: 15px;
+    /* 核心修改：位移圖片讓它看起來被「切到」 */
+    transform: translate(-10%, 5%) scale(1.1); 
+    transition: transform 0.5s ease;
+    display: block;
+    margin: 0 auto;
+}
 
+/* 滑鼠經過時，圖片稍微滑動，增加動態感 */
+.card:hover img {
+    transform: translate(-5%, 0%) scale(1.15);
+}
+
+.price { color: var(--accent-red); font-weight: 900; font-size: 1.3rem; margin-top: 15px; position: relative; z-index: 1; }
+.prod-name { position: relative; z-index: 1; }
+
+/* 頁尾 */
 .site-footer {
     background: var(--primary-brown); padding: 30px 40px;
     display: flex; justify-content: space-between; align-items: center; color: #fff;
