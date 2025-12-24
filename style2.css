@@ -102,36 +102,54 @@ body {
 
 .site-main { padding: 40px; }
 .brand-article { background: #fff; padding: 40px; border-radius: 25px; margin-bottom: 40px; }
-.section-title { font-family: 'Noto Serif TC', serif; font-weight: 900; color: var(--primary-brown); }
+.section-title { font-family: 'Noto Serif TC', serif; font-weight: 900; color: var(--primary-brown); margin-bottom: 20px;}
 
-/* 商品推薦區域 - 修正：確保整張圖片不被裁切 */
+/* --- 商品卡片修正區 --- */
 .product-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 30px;
 }
+
 .card { 
     background: #fff; 
-    padding: 25px; 
+    padding: 20px; 
     text-align: center; 
     border-radius: 25px; 
-    box-shadow: 0 8px 20px rgba(128, 73, 59, 0.05); 
+    box-shadow: 0 8px 20px rgba(128, 73, 59, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 水平置中 */
+    justify-content: space-between;
 }
+
+/* 建立一個容器來包圖片，確保它在中間 */
+.card-img-container {
+    width: 100%;
+    height: 200px; /* 您可以根據需要調整高度 */
+    display: flex;
+    justify-content: center; /* 圖片水平置中 */
+    align-items: center;     /* 圖片垂直置中 */
+    margin: 15px 0;
+    overflow: hidden;
+}
+
 .card img { 
-    width: 100%; 
-    height: 250px; /* 增加一點高度讓圖片更清晰 */
-    /* 修改重點：使用 contain 確保圖片完整呈現，不被裁切 */
+    max-width: 100%; 
+    max-height: 100%; 
+    /* 修改點：使用 contain 確保圖片完整不被切掉 */
     object-fit: contain; 
-    border-radius: 15px;
-    background-color: #fcfcfc; /* 給圖片一個淺色底色，如果圖片比例不符，兩側不會留白得很突兀 */
     transition: transform 0.3s ease;
 }
 
 .card:hover img {
-    transform: scale(1.05); /* 滑鼠懸停時微縮放增加質感，依然不會裁切 */
+    transform: scale(1.1); /* 滑鼠碰到時微微放大，但不會被容器切掉 */
 }
 
-.price { color: var(--accent-red); font-weight: 900; font-size: 1.3rem; margin-top: 10px; }
+.prod-name { font-size: 1.1rem; color: var(--primary-brown); font-weight: 700; margin: 10px 0; }
+.price { color: var(--accent-red); font-weight: 900; font-size: 1.2rem; margin: 0; }
 
-/* 頁尾 */
+/* --- 頁尾 --- */
 .site-footer {
     background: var(--primary-brown); padding: 30px 40px;
     display: flex; justify-content: space-between; align-items: center; color: #fff;
