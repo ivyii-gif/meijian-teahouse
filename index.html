@@ -7,44 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style2.css">
-    <style>
-        /* 針對「本店推薦」圖片的特殊切邊處理 */
-        .product-grid .card {
-            overflow: hidden; /* 確保圖片超出部分被裁切 */
-            position: relative;
-        }
-
-        .product-grid .card img {
-            width: 120%; /* 稍微放大圖片以便進行位移切邊 */
-            height: 200px; /* 固定高度 */
-            object-fit: cover;
-            /* 讓圖片向右下位移，造成左上被「切到」且不完整展示的效果 */
-            transform: translate(10%, 10%); 
-            transition: transform 0.3s ease;
-            display: block;
-        }
-
-        /* 懸停時稍微移動，增加互動感 */
-        .product-grid .card:hover img {
-            transform: translate(5%, 5%);
-        }
-
-        /* 調整卡片內的文字間距，避免被位移的圖片遮擋 */
-        .card .prod-name {
-            position: relative;
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.8);
-            margin: 0;
-            padding: 10px 0;
-        }
-        .card .price {
-            position: relative;
-            z-index: 2;
-            background: #fff;
-            margin: 0;
-            padding-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
 
