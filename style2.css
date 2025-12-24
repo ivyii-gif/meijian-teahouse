@@ -104,7 +104,7 @@ body {
 .brand-article { background: #fff; padding: 40px; border-radius: 25px; margin-bottom: 40px; }
 .section-title { font-family: 'Noto Serif TC', serif; font-weight: 900; color: var(--primary-brown); }
 
-/* 商品推薦區域 - 修改重點：圖片局部展示與切到效果 */
+/* 商品推薦區域 - 修正：確保整張圖片不被裁切 */
 .product-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;
 }
@@ -114,27 +114,22 @@ body {
     text-align: center; 
     border-radius: 25px; 
     box-shadow: 0 8px 20px rgba(128, 73, 59, 0.05); 
-    overflow: hidden; /* 確保放大的圖片不會超出卡片範圍 */
 }
 .card img { 
-    width: 130%; /* 放大寬度，讓部分畫面在框外 */
-    height: 220px; 
-    object-fit: cover; 
+    width: 100%; 
+    height: 250px; /* 增加一點高度讓圖片更清晰 */
+    /* 修改重點：使用 contain 確保圖片完整呈現，不被裁切 */
+    object-fit: contain; 
     border-radius: 15px;
-    /* 核心修改：位移圖片讓它看起來被「切到」 */
-    transform: translate(-10%, 5%) scale(1.1); 
-    transition: transform 0.5s ease;
-    display: block;
-    margin: 0 auto;
+    background-color: #fcfcfc; /* 給圖片一個淺色底色，如果圖片比例不符，兩側不會留白得很突兀 */
+    transition: transform 0.3s ease;
 }
 
-/* 滑鼠經過時，圖片稍微滑動，增加動態感 */
 .card:hover img {
-    transform: translate(-5%, 0%) scale(1.15);
+    transform: scale(1.05); /* 滑鼠懸停時微縮放增加質感，依然不會裁切 */
 }
 
-.price { color: var(--accent-red); font-weight: 900; font-size: 1.3rem; margin-top: 15px; position: relative; z-index: 1; }
-.prod-name { position: relative; z-index: 1; }
+.price { color: var(--accent-red); font-weight: 900; font-size: 1.3rem; margin-top: 10px; }
 
 /* 頁尾 */
 .site-footer {
