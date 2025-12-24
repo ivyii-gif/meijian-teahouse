@@ -132,32 +132,44 @@
                 <div class="product-grid">
                     <article class="card">
                         <h4 class="prod-name">梅子紅茶</h4>
-                        <img src="images/tea_red.jpg" alt="梅子紅茶">
+                        <div class="card-img-container">
+                            <img src="images/tea_red.jpg" alt="梅子紅茶">
+                        </div>
                         <p class="price">NT$ 40</p>
                     </article>
                     <article class="card">
                         <h4 class="prod-name">梅子奶蓋烏龍</h4>
-                        <img src="images/milkcap_oolong.png" alt="梅子奶蓋烏龍">
+                        <div class="card-img-container">
+                            <img src="images/milkcap_oolong.png" alt="梅子奶蓋烏龍">
+                        </div>
                         <p class="price">NT$ 65</p>
                     </article>
                     <article class="card">
                         <h4 class="prod-name">梅子檸檬冰爽</h4>
-                        <img src="images/lemon_drink.png" alt="梅子檸檬冰爽">
+                        <div class="card-img-container">
+                            <img src="images/lemon_drink.png" alt="梅子檸檬冰爽">
+                        </div>
                         <p class="price">NT$ 55</p>
                     </article>
                     <article class="card">
                         <h4 class="prod-name">梅子珍珠奶茶</h4>
-                        <img src="images/pearl_milk_tea.png" alt="梅子珍珠奶茶">
+                        <div class="card-img-container">
+                            <img src="images/pearl_milk_tea.png" alt="梅子珍珠奶茶">
+                        </div>
                         <p class="price">NT$ 60</p>
                     </article>
                     <article class="card">
                         <h4 class="prod-name">紅棗梅子暖茶</h4>
-                        <img src="images/warm_tea.png" alt="紅棗梅子暖茶">
+                        <div class="card-img-container">
+                            <img src="images/warm_tea.png" alt="紅棗梅子暖茶">
+                        </div>
                         <p class="price">NT$ 70</p>
                     </article>
                     <article class="card">
                         <h4 class="prod-name">老梅雪酪</h4>
-                        <img src="images/sorbet.png" alt="老梅雪酪">
+                        <div class="card-img-container">
+                            <img src="images/sorbet.png" alt="老梅雪酪">
+                        </div>
                         <p class="price">NT$ 70</p>
                     </article>
                 </div>
@@ -175,6 +187,7 @@
     </div>
 
     <script>
+        // Loading 腳本保持不變
         window.addEventListener('load', function() {
             let progress = 0;
             const loadingText = document.getElementById('loading-text');
@@ -194,6 +207,7 @@
             }, 12); 
         });
 
+        // 音樂與導覽腳本保持不變
         const bgMusic = document.getElementById('bg-music');
         function initMusic() {
             bgMusic.play().then(() => {
